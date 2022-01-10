@@ -1,7 +1,6 @@
 .profile__name {
-    font-size: 42px;
-    line-height: 48px;
+    font-size: calc(27px + (42 - 27) * ((100vw - 320px) / (1280 - 320)));
+    line-height: calc(32.68px + (48 - 32.68) * ((100vw - 320px) / (1280 - 320)));
     font-weight: 500;
-    margin: 0 18px 8px 0;
-    display: inline-block;
+    margin: 0;
 }

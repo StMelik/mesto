@@ -1,5 +1,6 @@
 .profile__about {
-    font-size: 18px;
+    font-size: calc(14px + (18 - 14) * ((100vw - 320px) / (1280 - 320)));
     line-height: 1.21;
     margin: 0;
+    align-self: start;
 }

@@ -7,8 +7,8 @@
     background-color: transparent;
     padding: 0;
     transition: opacity 0.3s;
-    margin-left: 20px;
     min-width: 50px;
+    margin-left: auto;
 }
 
 .profile__add-button::before {
@@ -27,4 +27,17 @@
 .profile__add-button:hover {
     opacity: 0.6;
     cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .profile__add-button {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .profile__add-button::before {
+        background-size: calc(16px + (22 - 16) * ((100vw - 320px) / (425 - 320)))
+            calc(16px + (22 - 16) * ((100vw - 320px) / (425 - 320)));
+    }
 }

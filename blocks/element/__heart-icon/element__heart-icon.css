@@ -1,0 +1,18 @@
+.element__heart-icon {
+    width: 22px;
+    height: 19px;
+    background-image: url("../../../images/hearth.svg");
+    transition: opacity 0.25s;
+}
+
+.element__heart-icon:hover:not(.element__heart-icon_active) {
+    opacity: 0.5;
+}
+
+.element__heart-icon:hover {
+    cursor: pointer;
+}
+
+.element__heart-icon_active {
+    background-image: url("../../../images/hearth-active.svg");
+}

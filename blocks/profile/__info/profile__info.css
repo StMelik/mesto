@@ -1,7 +1,6 @@
 .profile__info {
     display: grid;
     grid-template-columns: 1fr 22px;
-    grid-template-rows: fit-content fit-content;
     gap: 8px 15px;
 }
 

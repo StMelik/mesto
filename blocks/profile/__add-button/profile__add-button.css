@@ -9,6 +9,7 @@
     transition: opacity 0.3s;
     min-width: 50px;
     margin-left: auto;
+    border-radius: 2px;
 }
 
 .profile__add-button::before {

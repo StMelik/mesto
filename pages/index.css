@@ -39,6 +39,7 @@
 @import url("../blocks/element/__bottom/element__bottom.css");
 @import url("../blocks/element/__title/element__title.css");
 @import url("../blocks/element/__heart-icon/element__heart-icon.css");
+@import url("../blocks/element/__heart-icon/_active/element__heart-icon_active.css");
 
 /*----------FOOTER----------*/
 @import url("../blocks/footer/footer.css");

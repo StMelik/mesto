@@ -9,3 +9,13 @@
     box-sizing: border-box;
     position: relative;
 }
+
+@media screen and (max-width: 1280px) {
+    .popup__container {
+        width: calc(282px + (430 - 282) * ((100vw - 320px) / (1280 - 320)));
+        height: calc(322px + (330 - 322) * ((100vw - 320px) / (1280 - 320)));
+        padding: calc(25px + (34 - 25) * ((100vw - 320px) / (1280 - 320)))
+            calc(22px + (36 - 22) * ((100vw - 320px) / (1280 - 320)))
+            calc(25px + (37 - 25) * ((100vw - 320px) / (1280 - 320)));
+    }
+}

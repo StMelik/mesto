@@ -3,4 +3,7 @@
     line-height: calc(32.68px + (48 - 32.68) * ((100vw - 320px) / (1280 - 320)));
     font-weight: 500;
     margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }

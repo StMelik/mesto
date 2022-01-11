@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesto</title>
+    <title>Место</title>
     <link rel="stylesheet" href="pages/index.css">
 </head>
 
@@ -19,17 +19,17 @@
             <img class="profile__avatar" src="images/avatar.jpg" alt="Аватар">
             <div class="profile__info">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <button class="profile__edit-button"></button>
+                <button class="profile__edit-button" type="button"></button>
                 <p class="profile__about">Исследователь океана</p>
             </div>
-            <button class="profile__add-button"></button>
+            <button class="profile__add-button" type="button"></button>
             <div class="profile__popup popup">
                 <div class="popup__container">
-                    <button class="popup__close"></button>
+                    <button class="popup__close" type="button"></button>
                     <h3 class="popup__title">Редактировать профиль</h3>
-                    <form class="popup__form" action="#">
-                        <input class="popup__input popup__name" type="text">
-                        <input class="popup__input popup__about" type="text">
+                    <form class="popup__form" action="#" name="popup-edit">
+                        <input class="popup__input popup__input_value_name" type="text" name="name">
+                        <input class="popup__input popup__input_value_about" type="text" name="about">
                         <button class="popup__submit" type="submit">Сохранить</button>
                     </form>
                 </div>
@@ -37,48 +37,48 @@
         </section>
 
         <section class="elements">
-            <div class="elements__element element">
+            <article class="elements__element element">
                 <img class="element__image" src="images/temple.jpg" alt="Храм">
                 <div class="element__bottom">
                     <h2 class="element__title">Карачаевск</h2>
-                    <div class="element__heart-icon"></div>
+                    <button class="element__heart-icon" type="button"></button>
                 </div>
-            </div>
-            <div class="elements__element element">
+            </article>
+            <article class="elements__element element">
                 <img class="element__image" src="images/hill.jpg" alt="Холм">
                 <div class="element__bottom">
                     <h2 class="element__title">Гора Эльбрус</h2>
-                    <div class="element__heart-icon"></div>
+                    <button class="element__heart-icon" type="button"></button>
                 </div>
-            </div>
-            <div class="elements__element element">
+            </article>
+            <article class="elements__element element">
                 <img class="element__image" src="images/mountain.jpg" alt="Гора">
                 <div class="element__bottom">
                     <h2 class="element__title">Домбай</h2>
-                    <div class="element__heart-icon element__heart-icon_active"></div>
+                    <button class="element__heart-icon  element__heart-icon_active" type="button"></button>
                 </div>
-            </div>
-            <div class="elements__element element">
+            </article>
+            <article class="elements__element element">
                 <img class="element__image" src="images/hill.jpg" alt="Холм">
                 <div class="element__bottom">
                     <h2 class="element__title">Гора Эльбрус</h2>
-                    <div class="element__heart-icon"></div>
+                    <button class="element__heart-icon" type="button"></button>
                 </div>
-            </div>
-            <div class="elements__element element">
+            </article>
+            <article class="elements__element element">
                 <img class="element__image" src="images/mountain.jpg" alt="Гора">
                 <div class="element__bottom">
                     <h2 class="element__title">Домбай</h2>
-                    <div class="element__heart-icon"></div>
+                    <button class="element__heart-icon" type="button"></button>
                 </div>
-            </div>
-            <div class="elements__element element">
+            </article>
+            <article class="elements__element element">
                 <img class="element__image" src="images/temple.jpg" alt="Храм">
                 <div class="element__bottom">
                     <h2 class="element__title">Карачаево-Черкесия</h2>
-                    <div class="element__heart-icon"></div>
+                    <button class="element__heart-icon" type="button"></button>
                 </div>
-            </div>
+            </article>
         </section>
     </main>
     <footer class="footer">

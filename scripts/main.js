@@ -13,15 +13,13 @@ let openPopup = document.querySelector('.profile__edit-button');
 let closePopup = popup.querySelector('.popup__close');
 
 
-popupName.value = profileName.textContent
-popupAbout.value = profileAbout.textContent
-
-
 openPopup.addEventListener('click', popupOpend)
 closePopup.addEventListener('click', popupOpend)
 
 function popupOpend() {
-    popup.classList.toggle('popup_opend')
+    popup.classList.toggle('popup_opend');
+    popupName.value = profileName.textContent
+    popupAbout.value = profileAbout.textContent
 }
 
 // ----------------------------------

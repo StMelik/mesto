@@ -19,10 +19,10 @@ const initialCards = [
         name: 'Холмогорский район',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
     },
-    // {
-    //     name: 'Байкал',
-    //     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    // }
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
 ];
 
 let profileInfo = document.querySelector('.profile__info');
@@ -42,13 +42,12 @@ let closePopup = popup.querySelector('.popup__close');
 const cardTemp = document.querySelector('#card').content;
 const elements = document.querySelector('.elements');
 
+// Отрисовка карточек на странице
 initialCards.forEach(function (item) {
     const cardElement = cardTemp.querySelector('.element').cloneNode(true);
-
     cardElement.querySelector('.element__image').src = item.link;
     cardElement.querySelector('.element__image').alt = item.name;
     cardElement.querySelector('.element__title').textContent = item.name;
-
     elements.append(cardElement);
 })
 

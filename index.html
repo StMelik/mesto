@@ -23,13 +23,27 @@
                 <p class="profile__about">Исследователь океана</p>
             </div>
             <button class="profile__add-button" type="button" aria-label="Открыть"></button>
-            <div class="profile__popup popup">
+            <div class="profile__popup popup popup_edit">
                 <div class="popup__container">
                     <button class="popup__close" type="button" aria-label="Закрыть"></button>
                     <h3 class="popup__title">Редактировать профиль</h3>
                     <form class="popup__form" action="#" name="popup-edit">
                         <input class="popup__input popup__input_value_name" type="text" name="name">
                         <input class="popup__input popup__input_value_about" type="text" name="about">
+                        <button class="popup__submit" type="submit">Сохранить</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="profile__popup popup popup_add">
+                <div class="popup__container">
+                    <button class="popup__close" type="button" aria-label="Закрыть"></button>
+                    <h3 class="popup__title">Новое место</h3>
+                    <form class="popup__form" action="#" name="popup-edit">
+                        <input class="popup__input popup__input_value_name" type="text" name="name"
+                            placeholder="Название">
+                        <input class="popup__input popup__input_value_about" type="text" name="about"
+                            placeholder="Ссылка на картинку">
                         <button class="popup__submit" type="submit">Сохранить</button>
                     </form>
                 </div>

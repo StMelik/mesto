@@ -57,6 +57,13 @@ initialCards.forEach(function (item) {
     elements.append(cardElement);
 })
 
+let buttonsLike = document.querySelectorAll('.element__heart-icon');
+for (let buttonLike of buttonsLike) {
+    buttonLike.addEventListener('click', function () {
+        buttonLike.classList.toggle('element__heart-icon_active')
+    })
+}
+
 // Открытие попапа
 function popupOpend(popup) {
     popup.classList.toggle('popup_opend');

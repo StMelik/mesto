@@ -122,12 +122,12 @@ function formSubmitHandlerPopupAdd(evt) {
 
 // Обрботка событий попапа редактирования профиля
 openPopupEdit.addEventListener('click', () => popupOpened(popupEdit));
-closePopupEdit.addEventListener('click', () => popupOpened(popupEdit));
+closePopupEdit.addEventListener('click', () => popupClosed(popupEdit));
 formElementEdit.addEventListener('submit', formSubmitHandlerPopupEdit);
 
 // Обрботка событий попапа добавления карточек
 openPopupAdd.addEventListener('click', () => popupOpened(popupAdd));
-closePopupAdd.addEventListener('click', () => popupOpened(popupAdd));
+closePopupAdd.addEventListener('click', () => popupClosed(popupAdd));
 formElementAdd.addEventListener('submit', formSubmitHandlerPopupAdd);
 
 // Обработка событий попапа картинки

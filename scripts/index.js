@@ -57,10 +57,20 @@ initialCards.forEach(function (item) {
     elements.append(cardElement);
 })
 
+// Лайк карточки
 let buttonsLike = document.querySelectorAll('.element__heart-icon');
 for (let buttonLike of buttonsLike) {
     buttonLike.addEventListener('click', function () {
         buttonLike.classList.toggle('element__heart-icon_active')
+    })
+}
+
+// Удаление карточки
+const buttonsDelete = document.querySelectorAll('.element__delete');
+for (let buttonDelete of buttonsDelete) {
+    buttonDelete.addEventListener('click', function () {
+        const cardItem = buttonDelete.closest('.element');
+        cardItem.remove();
     })
 }
 

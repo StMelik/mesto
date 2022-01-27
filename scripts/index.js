@@ -45,6 +45,12 @@ const formElementAdd = popupAdd.querySelector('.popup__form');
 const popupAddName = popupAdd.querySelector('.popup__input_value_name');
 const popupAddLink = popupAdd.querySelector('.popup__input_value_link');
 
+// Попап картинки
+const popupImage = document.querySelector('.popup_image');
+const closePopupImage = popupImage.querySelector('.popup__close');
+const popupBigImg = popupImage.querySelector('.popup__big-img');
+const popupTitleImg = popupImage.querySelector('.popup__title-img');
+
 const cardTemp = document.querySelector('#card').content;
 const elements = document.querySelector('.elements');
 
@@ -58,7 +64,7 @@ initialCards.forEach(function (item) {
 })
 
 // Лайк карточки
-let buttonsLike = document.querySelectorAll('.element__heart-icon');
+const buttonsLike = document.querySelectorAll('.element__heart-icon');
 for (let buttonLike of buttonsLike) {
     buttonLike.addEventListener('click', function () {
         buttonLike.classList.toggle('element__heart-icon_active')
@@ -73,6 +79,17 @@ for (let buttonDelete of buttonsDelete) {
         cardItem.remove();
     })
 }
+
+// Открытие попапа картинки
+const images = document.querySelectorAll('.element__image');
+images.forEach((image, i) => {
+    image.addEventListener('click', function () {
+        popupBigImg.src = initialCards[i].link;
+        popupBigImg.alt = initialCards[i].name;
+        popupTitleImg.textContent = initialCards[i].name;
+        popupOpend(popupImage);
+    })
+})
 
 // Открытие попапа
 function popupOpend(popup) {
@@ -99,27 +116,22 @@ function addCard() {
 
 function formSubmitHandlerPopupEdit(evt) {
     evt.preventDefault();
-
     let namePopupValue = popupEditName.value;
     let aboutPopupValue = popupEditAbout.value;
     profileName.textContent = namePopupValue;
     profileAbout.textContent = aboutPopupValue;
-
     popupClosed(popupEdit)
 }
 
 function formSubmitHandlerPopupAdd(evt) {
     evt.preventDefault();
-
-    let newCard = {
+    const newCard = {
         name: popupAddName.value,
         link: popupAddLink.value
     }
     initialCards.push(newCard)
-
     addCard()
     popupClosed(popupAdd)
-
     popupAddName.value = '';
     popupAddLink.value = '';
 }
@@ -133,3 +145,6 @@ formElementEdit.addEventListener('submit', formSubmitHandlerPopupEdit);
 openPopupAdd.addEventListener('click', () => popupOpend(popupAdd))
 closePopupAdd.addEventListener('click', () => popupOpend(popupAdd))
 formElementAdd.addEventListener('submit', formSubmitHandlerPopupAdd);
+
+// Обработка событий попапа картинки
+closePopupImage.addEventListener('click', () => popupClosed(popupImage))

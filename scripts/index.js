@@ -54,6 +54,18 @@ const popupTitleImg = popupImage.querySelector('.popup__title-img');
 const cardTemp = document.querySelector('#card').content;
 const elements = document.querySelector('.elements');
 
+// Закрытие попапа нажатием на оверлей
+function closePopupOverlay(popup) {
+    const arrayPopups = Array.from(document.querySelectorAll('.popup'));
+    arrayPopups.forEach(popupElement => {
+        popupElement.addEventListener('click', evt => {
+            if (evt.target === evt.currentTarget) {
+                closePopup(popup)
+            }
+        })
+    })
+}
+
 // Открытие попапа
 function openPopup(popup) {
     popup.classList.add('popup_opened');
@@ -120,15 +132,18 @@ openPopupEdit.addEventListener('click', () => {
     openPopup(popupEdit)
 });
 closePopupEdit.addEventListener('click', () => closePopup(popupEdit));
+closePopupOverlay(popupEdit);
 formElementEdit.addEventListener('submit', handleProfileFormSubmit);
 
 // Обрботка событий попапа добавления карточек
 openPopupAdd.addEventListener('click', () => openPopup(popupAdd));
 closePopupAdd.addEventListener('click', () => closePopup(popupAdd));
+closePopupOverlay(popupAdd);
 formElementAdd.addEventListener('submit', handleCardFormSubmit);
 
 // Обработка событий попапа картинки
 closePopupImage.addEventListener('click', () => closePopup(popupImage));
+closePopupOverlay(popupImage);
 
 // Слушатель события нажатия на лайк
 elements.addEventListener('click', evt => {
@@ -146,3 +161,6 @@ elements.addEventListener('click', evt => {
 
 // Отобразить все карточки на странице
 elements.append(...allCards);
+
+
+

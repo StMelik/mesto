@@ -33,17 +33,17 @@ const profileAbout = profileInfo.querySelector('.profile__about');
 const popupEdit = document.querySelector('.popup_edit');
 const openPopupEdit = document.querySelector('.profile__edit-button');
 const closePopupEdit = popupEdit.querySelector('.popup__close');
-const formElementEdit = popupEdit.querySelector('.popup__form');
-const popupEditName = popupEdit.querySelector('.popup__input_value_name');
-const popupEditAbout = popupEdit.querySelector('.popup__input_value_about');
+const formElementEdit = document.forms.edit;
+const popupEditName = formElementEdit.elements.name;
+const popupEditAbout = formElementEdit.elements.about;
 
 // Попап добавления карточки
 const popupAdd = document.querySelector('.popup_add');
 const openPopupAdd = document.querySelector('.profile__add-button');
 const closePopupAdd = popupAdd.querySelector('.popup__close');
-const formElementAdd = popupAdd.querySelector('.popup__form');
-const popupAddName = popupAdd.querySelector('.popup__input_value_name');
-const popupAddLink = popupAdd.querySelector('.popup__input_value_link');
+const formElementAdd = document.forms.add;
+const popupAddTitle = formElementAdd.elements.title;
+const popupAddLink = formElementAdd.elements.link;
 
 // Попап картинки
 const popupImage = document.querySelector('.popup_image');
@@ -73,17 +73,6 @@ const createCard = (item) => {
     image.alt = item.name;
     cardElement.querySelector('.element__title').textContent = item.name;
 
-    const buttonLike = cardElement.querySelector('.element__heart-icon');
-    const buttonDelete = cardElement.querySelector('.element__delete');
-
-    buttonLike.addEventListener('click', function () {
-        buttonLike.classList.toggle('element__heart-icon_active');
-    })
-
-    buttonDelete.addEventListener('click', function () {
-        buttonDelete.closest('.element').remove();
-    })
-
     image.addEventListener('click', function () {
         popupBigImg.src = item.link;
         popupBigImg.alt = item.name;
@@ -92,28 +81,35 @@ const createCard = (item) => {
     })
 
     return cardElement;
+
+    // const buttonLike = cardElement.querySelector('.element__heart-icon');
+    // const buttonDelete = cardElement.querySelector('.element__delete');
+
+    // buttonLike.addEventListener('click', function () {
+    //     buttonLike.classList.toggle('element__heart-icon_active');
+    // })
+
+    // buttonDelete.addEventListener('click', function () {
+    //     buttonDelete.closest('.element').remove();
+    // })
 }
 
 const allCards = initialCards.map(createCard);
 
-function handleProfileFormSubmit(evt) {
-    // evt.preventDefault();
-    // const namePopupValue = popupEditName.value;
-    // const aboutPopupValue = popupEditAbout.value;
+function handleProfileFormSubmit() {
     profileName.textContent = popupEditName.value;
     profileAbout.textContent = popupEditAbout.value;
     closePopup(popupEdit);
 }
 
-function handleCardFormSubmit(evt) {
-    // evt.preventDefault();
+function handleCardFormSubmit() {
     const newCard = {
-        name: popupAddName.value,
+        name: popupAddTitle.value,
         link: popupAddLink.value
     };
     elements.prepend(createCard(newCard));
     closePopup(popupAdd);
-    popupAddName.value = '';
+    popupAddTitle.value = '';
     popupAddLink.value = '';
 }
 
@@ -133,6 +129,20 @@ formElementAdd.addEventListener('submit', handleCardFormSubmit);
 
 // Обработка событий попапа картинки
 closePopupImage.addEventListener('click', () => closePopup(popupImage));
+
+// Слушатель события нажатия на лайк
+elements.addEventListener('click', evt => {
+    if (evt.target.classList.contains('element__heart-icon')) {
+        evt.target.classList.toggle('element__heart-icon_active')
+    }
+})
+
+// Слушатель события нажатия на удалить
+elements.addEventListener('click', evt => {
+    if (evt.target.classList.contains('element__delete')) {
+        evt.target.closest('.element').remove();
+    }
+})
 
 // Отобразить все карточки на странице
 elements.append(...allCards);

@@ -56,8 +56,8 @@ const elements = document.querySelector('.elements');
 
 // Закрытие попапа нажатием на оверлей
 function closePopupOverlay(popup) {
-    const arrayPopups = Array.from(document.querySelectorAll('.popup'));
-    arrayPopups.forEach(popupElement => {
+    const popupList = Array.from(document.querySelectorAll('.popup'));
+    popupList.forEach(popupElement => {
         popupElement.addEventListener('click', evt => {
             if (evt.target === evt.currentTarget) {
                 closePopup(popup)
@@ -66,9 +66,21 @@ function closePopupOverlay(popup) {
     })
 }
 
+// Закрытие попапа ESC
+function closePopupESC(popup) {
+    const downKeyESC = evt => {
+        if (evt.key === 'Escape') {
+            closePopup(popup);
+            document.removeEventListener('keydown', downKeyESC);
+        }
+    }
+    document.addEventListener('keydown', downKeyESC);
+}
+
 // Открытие попапа
 function openPopup(popup) {
     popup.classList.add('popup_opened');
+    closePopupESC(popup);
 }
 
 // Закрытие попапа

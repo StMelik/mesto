@@ -36,6 +36,7 @@ const closePopupEdit = popupEdit.querySelector('.popup__close');
 const formElementEdit = document.forms.edit;
 const popupEditName = formElementEdit.elements.name;
 const popupEditAbout = formElementEdit.elements.about;
+const popupEditButton = formElementEdit.querySelector('.popup__submit');
 
 // Попап добавления карточки
 const popupAdd = document.querySelector('.popup_add');
@@ -122,14 +123,14 @@ function handleCardFormSubmit() {
     };
     elements.prepend(createCard(newCard));
     closePopup(popupAdd);
-    popupAddTitle.value = '';
-    popupAddLink.value = '';
+    formElementAdd.reset()
 }
 
 // Обрботка событий попапа редактирования профиля
 openPopupEdit.addEventListener('click', () => {
     popupEditName.value = profileName.textContent;
     popupEditAbout.value = profileAbout.textContent;
+    popupEditButton.classList.remove('popup__submit_inactive');
     openPopup(popupEdit)
 });
 closePopupEdit.addEventListener('click', () => closePopup(popupEdit));

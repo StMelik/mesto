@@ -97,16 +97,16 @@ const createCard = (item) => {
 const allCards = initialCards.map(createCard);
 
 function handleProfileFormSubmit(evt) {
-    evt.preventDefault();
-    const namePopupValue = popupEditName.value;
-    const aboutPopupValue = popupEditAbout.value;
-    profileName.textContent = namePopupValue;
-    profileAbout.textContent = aboutPopupValue;
+    // evt.preventDefault();
+    // const namePopupValue = popupEditName.value;
+    // const aboutPopupValue = popupEditAbout.value;
+    profileName.textContent = popupEditName.value;
+    profileAbout.textContent = popupEditAbout.value;
     closePopup(popupEdit);
 }
 
 function handleCardFormSubmit(evt) {
-    evt.preventDefault();
+    // evt.preventDefault();
     const newCard = {
         name: popupAddName.value,
         link: popupAddLink.value

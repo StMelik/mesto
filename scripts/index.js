@@ -18,6 +18,7 @@ const popupAddCloseBtn = popupAdd.querySelector('.popup__close');
 const formElementAdd = document.forms.add;
 const popupAddTitle = formElementAdd.elements.title;
 const popupAddLink = formElementAdd.elements.link;
+const popupAddSubmit = formElementAdd.querySelector('.popup__submit');
 
 // Попап картинки
 const popupImage = document.querySelector('.popup_image');
@@ -105,18 +106,33 @@ function handleCardFormSubmit() {
     formElementAdd.reset()
 }
 
+// Удаление отображение ошибки валидации попапа редактирования
+function removeClassErrorPopupEdit() {
+    const inputList = Array.from(formElementEdit.querySelectorAll('.popup__input'));
+    const errorList = Array.from(formElementEdit.querySelectorAll('.popup__input-error'));
+    for (let i = 0; i < inputList.length; i++) {
+        inputList[i].classList.remove('popup__input_type_error');
+        errorList[i].classList.remove('popup__input-error_active');
+    }
+}
+
 // Обрботка событий попапа редактирования профиля
 popupEditOpenBtn.addEventListener('click', () => {
     popupEditName.value = profileName.textContent;
     popupEditAbout.value = profileAbout.textContent;
     popupEditSubmit.classList.remove('popup__submit_inactive');
+    removeClassErrorPopupEdit()
+    popupEditSubmit.removeAttribute('disabled');
     openPopup(popupEdit)
 });
 popupEditCloseBtn.addEventListener('click', () => closePopup(popupEdit));
 formElementEdit.addEventListener('submit', handleProfileFormSubmit);
 
 // Обрботка событий попапа добавления карточек
-popupAddOpenBtn.addEventListener('click', () => openPopup(popupAdd));
+popupAddOpenBtn.addEventListener('click', () => {
+    openPopup(popupAdd);
+    popupAddSubmit.setAttribute('disabled', true)
+});
 popupAddCloseBtn.addEventListener('click', () => closePopup(popupAdd));
 formElementAdd.addEventListener('submit', handleCardFormSubmit);
 

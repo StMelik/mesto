@@ -6,6 +6,8 @@ import FormValidator from "./FormValidator.js";
 const PROFILE = {
     NAME: document.querySelector('.profile__name'),
     ABOUT: document.querySelector('.profile__about'),
+    EDIT_BUTTON: document.querySelector('.profile__edit-button'),
+    ADD_BUTTON: document.querySelector('.profile__add-button'),
 }
 
 // Формы
@@ -97,7 +99,7 @@ class PopupEdit extends Popup {
         this._popupName = POPUP_EDIT.NAME;
         this._popupAbout = POPUP_EDIT.ABOUT;
         this._popupSubmitBtn = POPUP_EDIT.SUBMIT_BTN;
-        this._popupOpenBtn = document.querySelector(`${popupSelector}-open-btn`);
+        this._popupOpenBtn = PROFILE.EDIT_BUTTON;
     }
 
     _enabledButton() {
@@ -144,7 +146,7 @@ class PopupAdd extends Popup {
         this._popupLink = POPUP_ADD.LINK;
         this._popupSubmitBtn = POPUP_ADD.SUBMIT_BTN;
         this._listCard = elements;
-        this._popupOpenBtn = document.querySelector(`${popupSelector}-open-btn`);
+        this._popupOpenBtn = PROFILE.ADD_BUTTON;
     }
 
     _disabledButton() {

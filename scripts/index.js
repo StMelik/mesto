@@ -117,7 +117,7 @@ class PopupEdit extends Popup {
     _open() {
         this._popupName.value = this._profileName.textContent
         this._popupAbout.value = this._profileAbout.textContent
-        this._enebledButton()
+        this._enabledButton()
         this._removeClassError()
         super._open()
     }

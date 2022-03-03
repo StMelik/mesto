@@ -23,19 +23,20 @@
                 <p class="profile__about">Исследователь океана</p>
             </div>
             <button class="profile__add-button" type="button" aria-label="Открыть"></button>
+
             <div class="profile__popup popup popup_edit">
                 <div class="popup__container">
-                    <button class="popup__close" type="button" aria-label="Закрыть"></button>
+                    <button class="popup__close popup__close-edit" type="button" aria-label="Закрыть"></button>
                     <h3 class="popup__title">Редактировать профиль</h3>
                     <form class="popup__form" action="#" name="edit" novalidate>
                         <label class="popup__form-label">
                             <input class="popup__input popup__input_value_name" id="name-input" type="text" name="name"
-                                required minlength="2" maxlength="40">
+                                required minlength="2" maxlength="40" autocomplete="off">
                             <span class="popup__input-error name-input-error"></span>
                         </label>
                         <label class="popup__form-label">
                             <input class="popup__input popup__input_value_about" id="about-input" type="text"
-                                name="about" required minlength="2" maxlength="200">
+                                name="about" required minlength="2" maxlength="200" autocomplete="off">
                             <span class="popup__input-error about-input-error"></span>
                         </label>
 
@@ -46,12 +47,13 @@
 
             <div class="profile__popup popup popup_add">
                 <div class="popup__container">
-                    <button class="popup__close" type="button" aria-label="Закрыть"></button>
+                    <button class="popup__close popup__close-add" type="button" aria-label="Закрыть"></button>
                     <h3 class="popup__title">Новое место</h3>
                     <form class="popup__form" action="#" name="add" novalidate>
                         <label class="popup__form-label">
                             <input class="popup__input popup__input_value_name" id="title-input" type="text"
-                                name="title" placeholder="Название" required minlength="2" maxlength="30">
+                                name="title" placeholder="Название" required minlength="2" maxlength="30"
+                                autocomplete="off">
                             <span class="popup__input-error title-input-error"></span>
                         </label>
                         <label class="popup__form-label">
@@ -74,7 +76,7 @@
 
     <div class="popup popup_image">
         <div class="popup__container-img">
-            <button class="popup__close" type="button" aria-label="Закрыть"></button>
+            <button class="popup__close popup__close-image" type="button" aria-label="Закрыть"></button>
             <img class="popup__big-img">
             <p class="popup__title-img"></p>
         </div>

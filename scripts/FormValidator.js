@@ -6,60 +6,67 @@ export default class FormValidator {
         this._inputErrorClass = config.inputErrorClass;
         this._errorClass = config.errorClass;
         this._formElement = formElement;
+        this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+        this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
     }
 
     // Показ ошибки
-    _showError(formElement, inputElement, errorMessage) {
-        const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    _showError(inputElement, errorMessage) {
+        const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
         inputElement.classList.add(this._inputErrorClass);
         errorElement.textContent = errorMessage;
         errorElement.classList.add(this._errorClass);
     }
 
     // Скрыть ошибки
-    _hideError(formElement, inputElement) {
-        const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    _hideError(inputElement) {
+        const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
         inputElement.classList.remove(this._inputErrorClass);
         errorElement.textContent = "";
         errorElement.classList.remove(this._errorClass);
     }
 
     // Проверка валидности формы
-    _isValid(formElement, inputElement) {
+    _isValid(inputElement) {
         if (!inputElement.validity.valid) {
-            this._showError(formElement, inputElement, inputElement.validationMessage);
+            this._showError(inputElement, inputElement.validationMessage);
         } else {
-            this._hideError(formElement, inputElement);
+            this._hideError(inputElement);
         }
     }
 
-    // Проверка валидыции всех полей формы
-    _hasInvalidInput(inputList) {
-        return inputList.some(inputElement => {
+    resetValidation() {
+        this._toggleButtonState()
+        this._inputList.forEach(inputElement => {
+            this._hideError(inputElement)
+        })
+    }
+
+    // Проверка валидности всех полей формы
+    _hasInvalidInput() {
+        return this._inputList.some(inputElement => {
             return !inputElement.validity.valid
         })
     }
 
     // Изменение состояния кнопки
-    _toggleButtonState(inputList, buttonElement) {
-        if (this._hasInvalidInput(inputList)) {
-            buttonElement.classList.add(this._inactiveButtonClass);
-            buttonElement.setAttribute('disabled', true)
+    _toggleButtonState() {
+        if (this._hasInvalidInput()) {
+            this._buttonElement.classList.add(this._inactiveButtonClass);
+            this._buttonElement.setAttribute('disabled', true)
         } else {
-            buttonElement.classList.remove(this._inactiveButtonClass);
-            buttonElement.removeAttribute('disabled');
+            this._buttonElement.classList.remove(this._inactiveButtonClass);
+            this._buttonElement.removeAttribute('disabled');
         }
     }
 
     // Добавить обработчик всем полям ввода
-    _setEventListeners(formElement) {
-        const inputList = Array.from(formElement.querySelectorAll(this._inputSelector));
-        const buttonElement = formElement.querySelector(this._submitButtonSelector);
-        this._toggleButtonState(inputList, buttonElement);
-        inputList.forEach(inputElement => {
+    _setEventListeners() {
+        this._toggleButtonState();
+        this._inputList.forEach(inputElement => {
             inputElement.addEventListener('input', () => {
-                this._isValid(formElement, inputElement);
-                this._toggleButtonState(inputList, buttonElement);
+                this._isValid(inputElement);
+                this._toggleButtonState();
             })
         })
     }
@@ -68,6 +75,6 @@ export default class FormValidator {
         this._formElement.addEventListener('submit', evt => {
             evt.preventDefault();
         });
-        this._setEventListeners(this._formElement)
+        this._setEventListeners()
     }
 }

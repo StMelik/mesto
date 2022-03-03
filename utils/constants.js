@@ -9,10 +9,11 @@ const FORMS = {
 }
 
 const POPUPS = {
+    ALL: document.querySelectorAll('.popup'),
+    CLOSE_SELECTOR: 'popup__close',
     EDIT: {
         POPUP: document.querySelector('.popup_edit'),
         OPEN: document.querySelector('.profile__edit-button'),
-        CLOSE: document.querySelector('.popup__close-edit'),
         NAME: FORMS.EDIT.elements.name,
         ABOUT: FORMS.EDIT.elements.about,
         SUBMIT_BTN: FORMS.EDIT.querySelector('.popup__submit'),
@@ -20,14 +21,12 @@ const POPUPS = {
     ADD: {
         POPUP: document.querySelector('.popup_add'),
         OPEN: document.querySelector('.profile__add-button'),
-        CLOSE: document.querySelector('.popup__close-add'),
         TITLE: FORMS.ADD.elements.title,
         LINK: FORMS.ADD.elements.link,
         SUBMIT_BTN: FORMS.ADD.querySelector('.popup__submit'),
     },
     IMAGE: {
         POPUP: document.querySelector('.popup_image'),
-        CLOSE: document.querySelector('.popup__close-image'),
         IMAGE: document.querySelector('.popup__big-img'),
         CAPTION: document.querySelector('.popup__title-img'),
     },

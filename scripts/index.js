@@ -14,15 +14,6 @@ function createCard(item) {
     return new Card(item, '#card', handleCardClick).generateCard()
 }
 
-// **************************************
-// **************************************
-// **************************************
-// Не совсем понял вторую часть замечания
-// с разделением логики вставки
-// **************************************
-// **************************************
-// **************************************
-
 function addCard(item) {
     elements.prepend(createCard(item))
 }
@@ -39,24 +30,25 @@ function closePopupOverlay(evt) {
 }
 
 // Закрытие попапа нажатием на ECS
-function downKeyESC(evt) {
+function handleEscKey(evt) {
     if (evt.key === 'Escape') {
-        const popupList = Array.from(document.querySelectorAll('.popup'))
-        popupList.forEach(closePopup)
+        const openedPopup = document.querySelector('.popup_opened')
+        closePopup(openedPopup)
     }
 }
 
 // Открытие попапа
 function openPopup(popup) {
     popup.classList.add('popup_opened');
-    popup.addEventListener('click', closePopupOverlay);
-    document.addEventListener('keydown', downKeyESC);
+    popup.addEventListener('mousedown', closePopupOverlay);
+    document.addEventListener('keydown', handleEscKey);
 }
 
 // Закрытие попапа
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', downKeyESC);
+    popup.removeEventListener('mousedown', closePopupOverlay);
+    document.removeEventListener('keydown', handleEscKey);
 }
 
 function handleProfileFormSubmit() {
@@ -94,14 +86,22 @@ function setDataPopupEdit() {
     POPUPS.EDIT.ABOUT.value = PROFILE.ABOUT.textContent;
 }
 
+// Закрытие попапа через крестик (добавляет событие для всех попапов)
+POPUPS.ALL.forEach(popup => {
+    popup.addEventListener('click', evt => {
+        const isButtonClosePopup = evt.target.classList.contains(POPUPS.CLOSE_SELECTOR)
+        if (isButtonClosePopup) {
+            closePopup(popup)
+        }
+    })
+})
+
 // Обрботка событий попапа редактирования профиля
 POPUPS.EDIT.OPEN.addEventListener('click', () => {
     setDataPopupEdit()
     formValidators['edit'].resetValidation()
     openPopup(POPUPS.EDIT.POPUP)
 });
-
-POPUPS.EDIT.CLOSE.addEventListener('click', () => closePopup(POPUPS.EDIT.POPUP));
 
 FORMS.EDIT.addEventListener('submit', handleProfileFormSubmit);
 
@@ -111,12 +111,7 @@ POPUPS.ADD.OPEN.addEventListener('click', () => {
     openPopup(POPUPS.ADD.POPUP);
 });
 
-POPUPS.ADD.CLOSE.addEventListener('click', () => closePopup(POPUPS.ADD.POPUP));
-
 FORMS.ADD.addEventListener('submit', handleCardFormSubmit);
-
-// Обработка события закрытия попапа картинки
-POPUPS.IMAGE.CLOSE.addEventListener('click', () => closePopup(POPUPS.IMAGE.POPUP));
 
 // Отобразить все карточки на странице
 renderCards()

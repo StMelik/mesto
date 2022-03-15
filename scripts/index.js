@@ -1,7 +1,16 @@
 import { initialCards } from "./cards.js"
+import { PROFILE, FORMS, POPUPS, configForm, elements, formValidators } from '../utils/constants.js'
 import Card from "./Card.js"
 import FormValidator from "./FormValidator.js";
-import { PROFILE, FORMS, POPUPS, configForm, elements, formValidators } from '../utils/constants.js'
+import Section from "./Section.js";
+
+const cardsList = new Section({
+    items: initialCards,
+    renderer: item => {
+        return new Card(item, '#card', handleCardClick)
+            .generateCard()
+    }
+}, '.elements')
 
 function handleCardClick(name, link) {
     POPUPS.IMAGE.IMAGE.src = link;
@@ -12,14 +21,6 @@ function handleCardClick(name, link) {
 
 function createCard(item) {
     return new Card(item, '#card', handleCardClick).generateCard()
-}
-
-function addCard(item) {
-    elements.prepend(createCard(item))
-}
-
-function renderCards() {
-    initialCards.forEach(addCard)
 }
 
 // Закрытие попапа нажатием на оверлей
@@ -63,7 +64,7 @@ function handleCardFormSubmit() {
         link: POPUPS.ADD.LINK.value
     };
     initialCards.push(newCard);
-    addCard(newCard);
+    cardsList.addItem(createCard(newCard));
     closePopup(POPUPS.ADD.POPUP);
     FORMS.ADD.reset()
 }
@@ -114,4 +115,4 @@ POPUPS.ADD.OPEN.addEventListener('click', () => {
 FORMS.ADD.addEventListener('submit', handleCardFormSubmit);
 
 // Отобразить все карточки на странице
-renderCards()
+cardsList.renderItems()

@@ -39,6 +39,7 @@ function handleClickOpenProfilePopup() {
     const userData = userInfo.getUserInfo()
     POPUPS.EDIT.NAME.value = userData.name;
     POPUPS.EDIT.ABOUT.value = userData.about;
+    formValidators['edit'].resetValidation()
     popupEdit.open()
 }
 
@@ -58,31 +59,25 @@ function handleAddFormSubmit(newCard) {
 }
 
 function handleClickOpenAddPopup() {
+    formValidators['add'].resetValidation()
     popupAdd.open()
 }
 
 POPUPS.ADD.OPEN.addEventListener('click', handleClickOpenAddPopup)
 
-
-// function enableValidation(config) {
-//     const formList = Array.from(document.querySelectorAll(config.formSelector));
-//     formList.forEach(formElement => {
-//         const validator = new FormValidator(config, formElement);
-//         const formName = formElement.getAttribute('name');
-//         formValidators[formName] = validator;
-//         validator.enableValidation()
-//     })
-// }
+// Валидация форм
+function enableValidation(config) {
+    const formList = Array.from(document.querySelectorAll(config.formSelector));
+    formList.forEach(formElement => {
+        const validator = new FormValidator(config, formElement);
+        const formName = formElement.getAttribute('name');
+        formValidators[formName] = validator;
+        validator.enableValidation()
+    })
+}
 
 // Включить валидацию форм
-// enableValidation(configForm)
-
-
-// Обрботка событий попапа добавления карточек
-// POPUPS.ADD.OPEN.addEventListener('click', () => {
-//     formValidators['add'].resetValidation()
-//     openPopup(POPUPS.ADD.POPUP);
-// });
+enableValidation(configForm)
 
 // Отобразить все карточки на странице
 cardsList.renderItems()

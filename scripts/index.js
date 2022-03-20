@@ -31,7 +31,6 @@ const userInfoSelectors = {
     aboutElementSelector: '.profile__about'
 }
 
-
 // Попап редактирования
 const userInfo = new UserInfo(userInfoSelectors)
 const popupEdit = new PopupWithForm('.popup_edit', handleProfileFormSubmit)
@@ -43,23 +42,27 @@ function handleClickOpenProfilePopup() {
     popupEdit.open()
 }
 
-POPUPS.EDIT.OPEN.addEventListener('click', handleClickOpenProfilePopup);
-
 function handleProfileFormSubmit(data) {
     userInfo.setUserInfo(data)
     popupEdit.close()
 }
 
-// function handleCardFormSubmit() {
-//     const newCard = {
-//         name: POPUPS.ADD.TITLE.value,
-//         link: POPUPS.ADD.LINK.value
-//     };
-//     initialCards.push(newCard);
-//     cardsList.addItem(createCard(newCard));
-//     closePopup(POPUPS.ADD.POPUP);
-//     FORMS.ADD.reset()
-// }
+POPUPS.EDIT.OPEN.addEventListener('click', handleClickOpenProfilePopup);
+
+// Попап добавления карточки
+const popupAdd = new PopupWithForm('.popup_edit', handleAddFormSubmit)
+
+function handleAddFormSubmit(newCard) {
+    cardsList.addItem(createCard(newCard))
+    popupAdd.close()
+}
+
+function handleClickOpenAddPopup() {
+    popupAdd.open()
+}
+
+POPUPS.ADD.OPEN.addEventListener('click', handleClickOpenAddPopup)
+
 
 // function enableValidation(config) {
 //     const formList = Array.from(document.querySelectorAll(config.formSelector));
@@ -80,9 +83,6 @@ function handleProfileFormSubmit(data) {
 //     formValidators['add'].resetValidation()
 //     openPopup(POPUPS.ADD.POPUP);
 // });
-
-// FORMS.ADD.addEventListener('submit', handleCardFormSubmit);
-
 
 // Отобразить все карточки на странице
 cardsList.renderItems()

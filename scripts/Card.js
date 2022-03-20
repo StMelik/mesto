@@ -19,7 +19,7 @@ export default class Card {
         this._element.querySelector('.element__delete').addEventListener('click', () => this._delete())
         this._element.querySelector('.element__heart-icon').addEventListener('click', (evt) => this._like(evt))
         this._cardImage.addEventListener('click', () => {
-            this._handleCardClick(this._name, this._link)
+            this._handleCardClick({ name: this._name, link: this._link })
         })
     }
 

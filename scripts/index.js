@@ -50,7 +50,7 @@ function handleProfileFormSubmit(data) {
 POPUPS.EDIT.OPEN.addEventListener('click', handleClickOpenProfilePopup);
 
 // Попап добавления карточки
-const popupAdd = new PopupWithForm('.popup_edit', handleAddFormSubmit)
+const popupAdd = new PopupWithForm('.popup_add', handleAddFormSubmit)
 
 function handleAddFormSubmit(newCard) {
     cardsList.addItem(createCard(newCard))

@@ -21,7 +21,7 @@ const POPUPS = {
     ADD: {
         POPUP: document.querySelector('.popup_add'),
         OPEN: document.querySelector('.profile__add-button'),
-        TITLE: FORMS.ADD.elements.title,
+        TITLE: FORMS.ADD.elements.name,
         LINK: FORMS.ADD.elements.link,
         SUBMIT_BTN: FORMS.ADD.querySelector('.popup__submit'),
     },

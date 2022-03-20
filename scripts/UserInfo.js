@@ -9,7 +9,6 @@ export default class UserInfo {
             name: this._nameElement.textContent,
             about: this._aboutElement.textContent,
         }
-
         return data
     }
 

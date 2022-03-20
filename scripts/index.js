@@ -26,12 +26,13 @@ function createCard(item) {
     return new Card(item, '#card', handleCardClick).generateCard()
 }
 
-
 const userInfoSelectors = {
     nameElementSelector: '.profile__name',
     aboutElementSelector: '.profile__about'
 }
 
+
+// Попап редактирования
 const userInfo = new UserInfo(userInfoSelectors)
 const popupEdit = new PopupWithForm('.popup_edit', handleProfileFormSubmit)
 
@@ -44,12 +45,8 @@ function handleClickOpenProfilePopup() {
 
 POPUPS.EDIT.OPEN.addEventListener('click', handleClickOpenProfilePopup);
 
-
 function handleProfileFormSubmit(data) {
-    console.log(data);
-
     userInfo.setUserInfo(data)
-
     popupEdit.close()
 }
 
@@ -77,18 +74,6 @@ function handleProfileFormSubmit(data) {
 // Включить валидацию форм
 // enableValidation(configForm)
 
-// Обрботка событий попапа редактирования профиля
-// POPUPS.EDIT.OPEN.addEventListener('click', () => {
-//     setDataPopupEdit()
-//     formValidators['edit'].resetValidation()
-//     openPopup(POPUPS.EDIT.POPUP)
-// });
-
-// FORMS.EDIT.addEventListener('submit', handleProfileFormSubmit);
-
-
-
-
 
 // Обрботка событий попапа добавления карточек
 // POPUPS.ADD.OPEN.addEventListener('click', () => {
@@ -97,9 +82,6 @@ function handleProfileFormSubmit(data) {
 // });
 
 // FORMS.ADD.addEventListener('submit', handleCardFormSubmit);
-
-
-
 
 
 // Отобразить все карточки на странице

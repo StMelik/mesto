@@ -35,13 +35,6 @@ export default class FormValidator {
         }
     }
 
-    resetValidation() {
-        this._toggleButtonState()
-        this._inputList.forEach(inputElement => {
-            this._hideError(inputElement)
-        })
-    }
-
     // Проверка валидности всех полей формы
     _hasInvalidInput() {
         return this._inputList.some(inputElement => {
@@ -52,8 +45,7 @@ export default class FormValidator {
     // Изменение состояния кнопки
     _toggleButtonState() {
         if (this._hasInvalidInput()) {
-            this._buttonElement.classList.add(this._inactiveButtonClass);
-            this._buttonElement.setAttribute('disabled', true)
+            this.disabledButton()
         } else {
             this._buttonElement.classList.remove(this._inactiveButtonClass);
             this._buttonElement.removeAttribute('disabled');
@@ -68,6 +60,18 @@ export default class FormValidator {
                 this._isValid(inputElement);
                 this._toggleButtonState();
             })
+        })
+    }
+
+    disabledButton() {
+        this._buttonElement.classList.add(this._inactiveButtonClass);
+        this._buttonElement.setAttribute('disabled', true)
+    }
+
+    resetValidation() {
+        this.disabledButton()
+        this._inputList.forEach(inputElement => {
+            this._hideError(inputElement)
         })
     }
 

@@ -29,6 +29,7 @@ export default class Card {
 
     _delete() {
         this._element.remove()
+        this._element = null
     }
 
     generateCard() {

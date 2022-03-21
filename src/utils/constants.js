@@ -3,6 +3,11 @@ const userInfoSelectors = {
     aboutElementSelector: '.profile__about'
 }
 
+const FORMS = {
+    EDIT: document.forms.edit,
+    ADD: document.forms.add
+}
+
 const POPUPS = {
     EDIT: {
         SELECTOR: '.popup_edit',
@@ -35,4 +40,4 @@ const configForm = {
 
 const formValidators = {}
 
-export { POPUPS, CARD, configForm, formValidators, userInfoSelectors }
+export { POPUPS, CARD, FORMS, configForm, formValidators, userInfoSelectors }

@@ -1,5 +1,5 @@
 import { initialCards } from "./cards.js"
-import { PROFILE, FORMS, POPUPS, configForm, elements, formValidators } from '../utils/constants.js'
+import { POPUPS, CARD, configForm, formValidators, userInfoSelectors } from '../utils/constants.js'
 import Card from "./Card.js"
 import FormValidator from "./FormValidator.js";
 import Section from "./Section.js";
@@ -11,32 +11,26 @@ import "../pages/index.css"
 import "../images/avatar.jpg"
 import "../images/logo.svg"
 
-
 const cardsList = new Section({
     items: initialCards,
     renderer: item => {
-        return new Card(item, '#card', handleCardClick)
+        return new Card(item, CARD.TEMPLATE_SELECTOR, handleCardClick)
             .generateCard()
     }
-}, '.elements')
+}, CARD.BOX_SELECTOR)
 
 function handleCardClick(data) {
-    const popupImage = new PopupWithImage('.popup_image')
+    const popupImage = new PopupWithImage(POPUPS.IMAGE.SELECTOR)
     popupImage.open(data)
 }
 
 function createCard(item) {
-    return new Card(item, '#card', handleCardClick).generateCard()
-}
-
-const userInfoSelectors = {
-    nameElementSelector: '.profile__name',
-    aboutElementSelector: '.profile__about'
+    return new Card(item, CARD.TEMPLATE_SELECTOR, handleCardClick).generateCard()
 }
 
 // Попап редактирования
 const userInfo = new UserInfo(userInfoSelectors)
-const popupEdit = new PopupWithForm('.popup_edit', handleProfileFormSubmit)
+const popupEdit = new PopupWithForm(POPUPS.EDIT.SELECTOR, handleProfileFormSubmit)
 
 function handleClickOpenProfilePopup() {
     const userData = userInfo.getUserInfo()
@@ -54,7 +48,7 @@ function handleProfileFormSubmit(data) {
 POPUPS.EDIT.OPEN.addEventListener('click', handleClickOpenProfilePopup);
 
 // Попап добавления карточки
-const popupAdd = new PopupWithForm('.popup_add', handleAddFormSubmit)
+const popupAdd = new PopupWithForm(POPUPS.ADD.SELECTOR, handleAddFormSubmit)
 
 function handleAddFormSubmit(newCard) {
     cardsList.addItem(createCard(newCard))

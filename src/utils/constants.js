@@ -1,35 +1,27 @@
-const PROFILE = {
-    NAME: document.querySelector('.profile__name'),
-    ABOUT: document.querySelector('.profile__about'),
-}
-
-const FORMS = {
-    EDIT: document.forms.edit,
-    ADD: document.forms.add,
+const userInfoSelectors = {
+    nameElementSelector: '.profile__name',
+    aboutElementSelector: '.profile__about'
 }
 
 const POPUPS = {
-    ALL: document.querySelectorAll('.popup'),
-    CLOSE_SELECTOR: 'popup__close',
     EDIT: {
-        POPUP: document.querySelector('.popup_edit'),
+        SELECTOR: '.popup_edit',
         OPEN: document.querySelector('.profile__edit-button'),
-        NAME: FORMS.EDIT.elements.name,
-        ABOUT: FORMS.EDIT.elements.about,
-        SUBMIT_BTN: FORMS.EDIT.querySelector('.popup__submit'),
+        NAME: document.querySelector('.popup__input_value_name'),
+        ABOUT: document.querySelector('.popup__input_value_about'),
     },
     ADD: {
-        POPUP: document.querySelector('.popup_add'),
+        SELECTOR: '.popup_add',
         OPEN: document.querySelector('.profile__add-button'),
-        TITLE: FORMS.ADD.elements.name,
-        LINK: FORMS.ADD.elements.link,
-        SUBMIT_BTN: FORMS.ADD.querySelector('.popup__submit'),
     },
     IMAGE: {
-        POPUP: document.querySelector('.popup_image'),
-        IMAGE: document.querySelector('.popup__big-img'),
-        CAPTION: document.querySelector('.popup__title-img'),
+        SELECTOR: '.popup_image',
     },
+}
+
+const CARD = {
+    BOX_SELECTOR: '.elements',
+    TEMPLATE_SELECTOR: '#card'
 }
 
 const configForm = {
@@ -41,8 +33,6 @@ const configForm = {
     errorClass: 'popup__input-error_active'
 }
 
-const elements = document.querySelector('.elements');
-
 const formValidators = {}
 
-export { PROFILE, FORMS, POPUPS, configForm, elements, formValidators }
+export { POPUPS, CARD, configForm, formValidators, userInfoSelectors }

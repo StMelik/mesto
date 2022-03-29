@@ -2,10 +2,9 @@ import { POPUPS, CARD, FORMS, configForm, userInfoSelectors, optionsApi, cardLis
 import Card from "../components/Card.js"
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
-import Popup from '../components/Popup.js';
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
-import PopupWithConfirm from '../components/PopupWithConfirm.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 
@@ -20,7 +19,7 @@ const formAvatarValidator = new FormValidator(configForm, FORMS.AVATAR)
 const popupImage = new PopupWithImage(POPUPS.IMAGE.SELECTOR)
 const popupEdit = new PopupWithForm(POPUPS.EDIT.SELECTOR, handleProfileFormSubmit)
 const popupAdd = new PopupWithForm(POPUPS.ADD.SELECTOR, handleAddFormSubmit)
-const popupDelete = new PopupWithConfirm(POPUPS.DELETE.SELECTOR, handleConfirmPopup)
+const popupDelete = new PopupWithConfirmation(POPUPS.DELETE.SELECTOR, handleConfirmPopup)
 const popupAvatar = new PopupWithForm(POPUPS.AVATAR.SELECTOR, handleAvatarFormSubmit)
 
 const userInfo = new UserInfo(userInfoSelectors)

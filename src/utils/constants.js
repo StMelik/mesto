@@ -1,11 +1,13 @@
 const userInfoSelectors = {
     nameElementSelector: '.profile__name',
-    aboutElementSelector: '.profile__about'
+    aboutElementSelector: '.profile__about',
+    avatarElementSelector: '.profile__avatar'
 }
 
 const FORMS = {
     EDIT: document.forms.edit,
-    ADD: document.forms.add
+    ADD: document.forms.add,
+    AVATAR: document.forms.avatar
 }
 
 const POPUPS = {
@@ -22,6 +24,14 @@ const POPUPS = {
     IMAGE: {
         SELECTOR: '.popup_image',
     },
+    DELETE: {
+        SELECTOR: '.popup_delete',
+        CONFIRM: document.querySelector('.delete-button')
+    },
+    AVATAR: {
+        SELECTOR: '.popup_avatar',
+        OPEN_BUTTON: document.querySelector('.profile__avatar-box')
+    }
 }
 
 const CARD = {
@@ -38,6 +48,14 @@ const configForm = {
     errorClass: 'popup__input-error_active'
 }
 
-const formValidators = {}
+const optionsApi = {
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-39/',
+    headers: {
+        authorization: 'b287dd23-5596-4869-8607-85a6badb8cad',
+        'Content-Type': 'application/json'
+    }
+}
 
-export { POPUPS, CARD, FORMS, configForm, formValidators, userInfoSelectors }
+const cardList = [];
+
+export { POPUPS, CARD, FORMS, configForm, userInfoSelectors, optionsApi, cardList }

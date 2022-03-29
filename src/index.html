@@ -15,11 +15,13 @@
 
     <main class="main">
         <section class="profile">
-            <img class="profile__avatar" src="images/avatar.jpg" alt="Аватар">
+            <button class="profile__avatar-box">
+                <img class="profile__avatar" src="images/no-avatar.png" alt="Аватар">
+            </button>
             <div class="profile__info">
-                <h1 class="profile__name">Жак-Ив Кусто</h1>
+                <h1 class="profile__name">Загрузка ...</h1>
                 <button class="profile__edit-button" type="button" aria-label="Открыть"></button>
-                <p class="profile__about">Исследователь океана</p>
+                <p class="profile__about">Загрузка ...</p>
             </div>
             <button class="profile__add-button" type="button" aria-label="Открыть"></button>
 
@@ -80,6 +82,29 @@
         </div>
     </div>
 
+    <div class="popup popup_delete">
+        <div class="popup__container">
+            <button class="popup__close" type="button" aria-label="Закрыть"></button>
+            <h3 class="popup__title">Вы уверены?</h3>
+            <button class="popup__submit delete-button">Да</button>
+        </div>
+    </div>
+
+    <div class="popup popup_avatar">
+        <div class="popup__container">
+            <button class="popup__close" type="button" aria-label="Закрыть"></button>
+            <h3 class="popup__title">Обновить аватар</h3>
+            <form class="popup__form" action="#" name="avatar" novalidate>
+                <label class="popup__form-label">
+                    <input class="popup__input popup__input_value_link" id="link-input" type="url" name="avatar"
+                        placeholder="Ссылка на аватар" required>
+                    <span class="popup__input-error link-input-error"></span>
+                </label>
+                <button class="popup__submit" type="submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
     <!-- Шаблон карточки -->
     <template id="card">
         <article class="elements__element element">
@@ -87,7 +112,10 @@
             <img class="element__image">
             <div class="element__bottom">
                 <h2 class="element__title"></h2>
-                <button class="element__heart-icon" type="button" aria-label="Понравилось"></button>
+                <div class="element__heart-box">
+                    <button class="element__heart-icon" type="button" aria-label="Понравилось"></button>
+                    <p class="element__heart-value">5</p>
+                </div>
             </div>
         </article>
     </template>

@@ -56,4 +56,6 @@ const optionsApi = {
     }
 }
 
-export { POPUPS, CARD, FORMS, configForm, userInfoSelectors, optionsApi }
+const cardList = [];
+
+export { POPUPS, CARD, FORMS, configForm, userInfoSelectors, optionsApi, cardList }

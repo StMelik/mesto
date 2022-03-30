@@ -37,8 +37,8 @@ function createCard(item) {
     const card = new Card(item, CARD.TEMPLATE_SELECTOR, userInfoServer, {
         handleCardClick,
         handleDeleteClick,
-        handleAddLikeCard,
-        handleDeleteLikeCard
+        likeCard,
+        dislikeCard
     })
     cardList.push({
         cardElement: card,
@@ -65,20 +65,12 @@ function handleDeleteClick(cardId) {
 }
 
 // Лайки
-function handleAddLikeCard(cardId) {
-    api.addLikeCard(cardId)
-        .then(res => {
-            this._likeCount.textContent = res.likes.length
-        })
-        .catch(err => console.log("Не удалось поставить лайк:", err))
+function likeCard(cardId) {
+    return api.addLikeCard(cardId)
 }
 
-function handleDeleteLikeCard(cardId) {
-    api.deleteLikeCard(cardId)
-        .then(res => {
-            this._likeCount.textContent = res.likes.length
-        })
-        .catch(err => console.log("Не удалось удалить лайк:", err))
+function dislikeCard(cardId) {
+    return api.deleteLikeCard(cardId)
 }
 
 // Попап картинки

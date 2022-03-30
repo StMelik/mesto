@@ -1,12 +1,12 @@
 export default class Card {
-    constructor(data, cardSelector, userInfo, { handleCardClick, handleDeleteClick, handleAddLikeCard, handleDeleteLikeCard }) {
+    constructor(data, cardSelector, userInfo, { handleCardClick, handleDeleteClick, likeCard, dislikeCard }) {
         this._name = data.name;
         this._link = data.link;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
         this._handleDeleteClick = handleDeleteClick;
-        this._handleAddLikeCard = handleAddLikeCard;
-        this._handleDeleteLikeCard = handleDeleteLikeCard;
+        this._likeCard = likeCard;
+        this._dislikeCard = dislikeCard;
         this._likeList = data.likes;
         this._cardId = data._id;
         this._creatorId = data.owner._id
@@ -35,13 +35,19 @@ export default class Card {
     _like(evt) {
         const hasLike = evt.target.classList.contains('element__heart-icon_active')
         if (!hasLike) {
-            evt.target.classList.add('element__heart-icon_active')
-            this._likeCount.textContent = Number(this._likeCount.textContent) + 1
-            this._handleAddLikeCard(this._cardId)
+            this._likeCard(this._cardId)
+                .then(res => {
+                    this._likeCount.textContent = res.likes.length
+                    evt.target.classList.add('element__heart-icon_active')
+                })
+                .catch(err => console.log("Не удалось поставить лайк:", err))
         } else {
-            evt.target.classList.remove('element__heart-icon_active')
-            this._likeCount.textContent = Number(this._likeCount.textContent) - 1
-            this._handleDeleteLikeCard(this._cardId)
+            this._dislikeCard(this._cardId)
+                .then(res => {
+                    this._likeCount.textContent = res.likes.length
+                    evt.target.classList.remove('element__heart-icon_active')
+                })
+                .catch(err => console.log("Не удалось удалить лайк:", err))
         }
     }
 

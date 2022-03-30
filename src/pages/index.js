@@ -50,14 +50,14 @@ function createCard(item) {
 // Удаление карточки
 function handleConfirmPopup(cardId) {
     api.deleteCard(cardId)
+        .then(() => {
+            cardList
+                .find(card => card.cardId === cardId)
+                .cardElement
+                .deleteCard()
+            popupDelete.close()
+        })
         .catch(err => console.log("Не удалось удалить карточку:", err))
-
-    cardList
-        .find(card => card.cardId === cardId)
-        .cardElement
-        .deleteCard()
-
-    popupDelete.close()
 }
 
 function handleDeleteClick(cardId) {

@@ -126,7 +126,6 @@ function handleAvatarFormSubmit(data) {
     api.editUserAvatar(data)
         .then((res) => {
             userInfo.setAvatar(res)
-            popupAvatar.loader(false)
             popupAvatar.close()
         })
         .catch(err => console.log("Не удалось сменить аватар:", err))

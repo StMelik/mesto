@@ -26,7 +26,6 @@ const userInfo = new UserInfo(userInfoSelectors)
 const api = new Api(optionsApi)
 const cardsList = new Section(
     {
-        items: api.getInitialCards(),
         renderer: createCard
     },
     CARD.BOX_SELECTOR
@@ -134,17 +133,17 @@ formEditValidator.enableValidation()
 formAddValidator.enableValidation()
 formAvatarValidator.enableValidation()
 
-// Отобразить имя, описание и аватар
-function renderUserInfo() {
-    userInfoServer.then(data => {
-        userInfo.setUserInfo(data)
-        userInfo.setAvatar(data)
-    })
+// Отрисовать страницу со всеми данными с сервера
+function renderPage() {
+    Promise.all([userInfoServer, api.getInitialCards()])
+        .then(res => {
+            userInfo.setUserInfo(res[0])
+            userInfo.setAvatar(res[0])
+            cardsList.renderItems(res[1])
+        })
 }
 
-renderUserInfo()
-
-cardsList.renderItems()
+renderPage()
 
 // Обработка событий
 POPUPS.EDIT.OPEN.addEventListener('click', handleClickOpenProfilePopup);

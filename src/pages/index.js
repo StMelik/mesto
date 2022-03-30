@@ -50,10 +50,13 @@ function createCard(item) {
 // Удаление карточки
 function handleConfirmPopup(cardId) {
     api.deleteCard(cardId)
+        .catch(err => console.log("Не удалось удалить карточку:", err))
+
     cardList
         .find(card => card.cardId === cardId)
         .cardElement
         .deleteCard()
+
     popupDelete.close()
 }
 
@@ -63,15 +66,19 @@ function handleDeleteClick(cardId) {
 
 // Лайки
 function handleAddLikeCard(cardId) {
-    api.addLikeCard(cardId).then(res => {
-        this._likeCount.textContent = res.likes.length
-    })
+    api.addLikeCard(cardId)
+        .then(res => {
+            this._likeCount.textContent = res.likes.length
+        })
+        .catch(err => console.log("Не удалось поставить лайк:", err))
 }
 
 function handleDeleteLikeCard(cardId) {
-    api.deleteLikeCard(cardId).then(res => {
-        this._likeCount.textContent = res.likes.length
-    })
+    api.deleteLikeCard(cardId)
+        .then(res => {
+            this._likeCount.textContent = res.likes.length
+        })
+        .catch(err => console.log("Не удалось удалить лайк:", err))
 }
 
 // Попап картинки
@@ -90,21 +97,25 @@ function handleClickOpenProfilePopup() {
 
 function handleProfileFormSubmit(data) {
     popupEdit.loader(true)
-    api.editUserInfo(data).then(res => {
-        userInfo.setUserInfo(res)
-        popupEdit.loader(false)
-        popupEdit.close()
-    })
+    api.editUserInfo(data)
+        .then(res => {
+            userInfo.setUserInfo(res)
+            popupEdit.close()
+        })
+        .catch(err => console.log("Не удалось изменить данные профиля:", err))
+        .finally(() => popupEdit.loader(false))
 }
 
 // Попап добавления карточки
 function handleAddFormSubmit(newCard) {
     popupAdd.loader(true)
-    api.addCard(newCard).then(res => {
-        cardsList.addItem(createCard(res), 'prepend')
-        popupAdd.loader(false, 'add')
-        popupAdd.close()
-    })
+    api.addCard(newCard)
+        .then(res => {
+            cardsList.addItem(createCard(res), 'prepend')
+            popupAdd.close()
+        })
+        .catch(err => console.log("Не удалось добавить карточку:", err))
+        .finally(() => popupAdd.loader(false, 'add'))
 }
 
 function handleClickOpenAddPopup() {
@@ -126,6 +137,8 @@ function handleAvatarFormSubmit(data) {
             popupAvatar.loader(false)
             popupAvatar.close()
         })
+        .catch(err => console.log("Не удалось сменить аватар:", err))
+        .finally(() => popupAvatar.loader(false))
 }
 
 // Валидация форм
@@ -141,6 +154,7 @@ function renderPage() {
             userInfo.setAvatar(res[0])
             cardsList.renderItems(res[1])
         })
+        .catch(err => console.log("Не удалось загрузить страницу:", err))
 }
 
 renderPage()
